@@ -1,21 +1,35 @@
 package com.editorial.publications.domain.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "publications")
-public class Publication extends PublicationBase {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class Publication {
 
-    protected Publication() {}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public Publication(String title, String content, Long authorId) {
-        this.title = title;
-        this.content = content;
-        this.authorId = authorId;
-    }
+    @Column(nullable = false)
+    private String title;
 
-    public void changeStatus(PublicationStatus status) {
-        this.status = status;
-    }
+    @Column(nullable = false, length = 5000)
+    private String content;
+
+    @Column(name = "author_id", nullable = false)
+    private Long authorId;
+
+    @Column(nullable = false)
+    private String status;
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
 }

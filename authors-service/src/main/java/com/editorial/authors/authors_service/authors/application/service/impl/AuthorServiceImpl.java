@@ -3,7 +3,7 @@ package com.editorial.authors.authors_service.authors.application.service.impl;
 import com.editorial.authors.authors_service.authors.domain.model.Author;
 import com.editorial.authors.authors_service.authors.repository.AuthorRepository;
 
-import com.editorial.authors.api.mapper.AuthorMapper;
+import com.editorial.authors.authors_service.authors.api.mapper.AuthorMapper;
 import com.editorial.authors.api.request.CreateAuthorRequest;
 import com.editorial.authors.api.response.AuthorResponse;
 import com.editorial.authors.application.service.AuthorService;
