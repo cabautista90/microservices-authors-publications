@@ -1,8 +1,9 @@
-package com.editorial.authors.api.mapper;
+package com.editorial.authors.authors_service.authors.api.mapper;
+
+import com.editorial.authors.authors_service.authors.domain.model.Author;
 
 import com.editorial.authors.api.request.CreateAuthorRequest;
 import com.editorial.authors.api.response.AuthorResponse;
-import com.editorial.authors.domain.Author;
 
 import java.time.LocalDateTime;
 

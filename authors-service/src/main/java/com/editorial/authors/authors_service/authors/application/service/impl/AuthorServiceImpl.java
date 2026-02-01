@@ -1,11 +1,12 @@
-package com.editorial.authors.application.service.impl;
+package com.editorial.authors.authors_service.authors.application.service.impl;
+
+import com.editorial.authors.authors_service.authors.domain.model.Author;
+import com.editorial.authors.authors_service.authors.repository.AuthorRepository;
 
 import com.editorial.authors.api.mapper.AuthorMapper;
 import com.editorial.authors.api.request.CreateAuthorRequest;
 import com.editorial.authors.api.response.AuthorResponse;
 import com.editorial.authors.application.service.AuthorService;
-import com.editorial.authors.domain.Author;
-import com.editorial.authors.domain.repository.AuthorRepository;
 
 import org.springframework.stereotype.Service;
 
