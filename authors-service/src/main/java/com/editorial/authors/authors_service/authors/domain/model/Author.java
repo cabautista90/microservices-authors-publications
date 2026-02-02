@@ -1,32 +1,50 @@
 package com.editorial.authors.authors_service.authors.domain.model;
 
 import jakarta.persistence.*;
-import lombok.*;
-
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "authors")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String name;
-
-    @Column(nullable = false, unique = true)
     private String email;
-
-    @Column(length = 1000)
     private String biography;
-
-    @Column(name = "created_at")
     private LocalDateTime createdAt;
+
+    protected Author() {
+    }
+
+    public Author(String name, String email, String biography, LocalDateTime createdAt) {
+        this.name = name;
+        this.email = email;
+        this.biography = biography;
+        this.createdAt = createdAt;
+    }
+
+    // GETTERS
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getBiography() {
+        return biography;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
 }
+

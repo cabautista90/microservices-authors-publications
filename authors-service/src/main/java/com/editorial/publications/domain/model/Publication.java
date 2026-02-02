@@ -1,35 +1,53 @@
 package com.editorial.publications.domain.model;
 
-import jakarta.persistence.*;
-import lombok.*;
-
-import java.time.LocalDateTime;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "publications")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-public class Publication {
+public class Publication extends PublicationBase {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    // Constructor requerido por JPA
+    protected Publication() {
+    }
 
-    @Column(nullable = false)
-    private String title;
+    // Constructor de dominio
+    public Publication(String title, String content, Long authorId) {
+        this.title = title;
+        this.content = content;
+        this.authorId = authorId;
+        this.status = PublicationStatus.DRAFT;
+    }
 
-    @Column(nullable = false, length = 5000)
-    private String content;
+    // ===== Getters =====
 
-    @Column(name = "author_id", nullable = false)
-    private Long authorId;
+    public Long getId() {
+        return id;
+    }
 
-    @Column(nullable = false)
-    private String status;
+    public String getTitle() {
+        return title;
+    }
 
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    public String getContent() {
+        return content;
+    }
+
+    public Long getAuthorId() {
+        return authorId;
+    }
+
+    public PublicationStatus getStatus() {
+        return status;
+    }
+
+    public java.time.LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    // ===== Lógica de dominio =====
+
+    public void changeStatus(PublicationStatus status) {
+        this.status = status;
+    }
 }

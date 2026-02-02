@@ -1,5 +1,9 @@
 package com.editorial.publications.application.service.impl;
 
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.editorial.publications.api.client.AuthorsClient;
 import com.editorial.publications.api.mapper.PublicationMapper;
 import com.editorial.publications.api.request.CreatePublicationRequest;
@@ -8,22 +12,22 @@ import com.editorial.publications.application.service.PublicationService;
 import com.editorial.publications.domain.factory.PublicationStatusFactory;
 import com.editorial.publications.domain.model.Publication;
 import com.editorial.publications.domain.model.PublicationStatus;
+import com.editorial.publications.domain.strategy.PublicationStatusStrategy;
 import com.editorial.publications.infrastructure.repository.PublicationRepository;
-
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class PublicationServiceImpl implements PublicationService {
 
     private final PublicationRepository repository;
     private final AuthorsClient authorsClient;
+    private final PublicationStatusFactory statusFactory;
 
     public PublicationServiceImpl(PublicationRepository repository,
-                                  AuthorsClient authorsClient) {
+                                  AuthorsClient authorsClient,
+                                  PublicationStatusFactory statusFactory) {
         this.repository = repository;
         this.authorsClient = authorsClient;
+        this.statusFactory = statusFactory;
     }
 
     @Override
@@ -54,12 +58,16 @@ public class PublicationServiceImpl implements PublicationService {
 
     @Override
     public PublicationResponse changeStatus(Long id, PublicationStatus status) {
+
         Publication publication = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Publicación no encontrada"));
 
-        PublicationStatusFactory.getStrategy(status)
-                .changeStatus(publication);
+        PublicationStatusStrategy strategy =
+                statusFactory.getStrategy(status);
+
+        strategy.changeStatus(publication);
 
         return PublicationMapper.toResponse(repository.save(publication));
     }
 }
+
