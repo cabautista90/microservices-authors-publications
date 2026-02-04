@@ -1,0 +1,13 @@
+package com.editorial.publications_service;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class PublicationsServiceApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
