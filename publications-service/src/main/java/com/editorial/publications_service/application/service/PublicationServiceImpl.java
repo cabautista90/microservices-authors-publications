@@ -1,10 +1,12 @@
 package com.editorial.publications_service.application.service;
 
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.editorial.publications_service.api.client.AuthorsClient;
 import com.editorial.publications_service.domain.model.Publication;
 import com.editorial.publications_service.domain.repository.PublicationRepository;
-
-import org.springframework.stereotype.Service;
 
 @Service
 public class PublicationServiceImpl implements PublicationService {
@@ -20,8 +22,9 @@ public class PublicationServiceImpl implements PublicationService {
         this.authorsClient = authorsClient;
     }
 
+    // 🔹 CREATE
     @Override
-    public Publication save(Publication publication) {
+    public Publication createPublication(Publication publication) {
 
         boolean authorExists = authorsClient
                 .getAuthorById(publication.getAuthorId())
@@ -34,5 +37,20 @@ public class PublicationServiceImpl implements PublicationService {
         }
 
         return publicationRepository.save(publication);
+    }
+
+    // 🔹 READ ALL
+    @Override
+    public List<Publication> getAllPublications() {
+        return publicationRepository.findAll();
+    }
+
+    // 🔹 READ BY ID
+    @Override
+    public Publication getPublicationById(Long id) {
+        return publicationRepository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException("Publicación no encontrada con ID " + id)
+                );
     }
 }

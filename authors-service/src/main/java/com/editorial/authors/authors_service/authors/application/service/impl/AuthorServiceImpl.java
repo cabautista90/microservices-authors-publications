@@ -1,17 +1,18 @@
 package com.editorial.authors.authors_service.authors.application.service.impl;
 
-import com.editorial.authors.authors_service.authors.domain.model.Author;
-import com.editorial.authors.authors_service.authors.repository.AuthorRepository;
+import java.util.List;
+import java.util.stream.Collectors;
 
-import com.editorial.authors.authors_service.authors.api.mapper.AuthorMapper;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
 import com.editorial.authors.api.request.CreateAuthorRequest;
 import com.editorial.authors.api.response.AuthorResponse;
 import com.editorial.authors.application.service.AuthorService;
-
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import com.editorial.authors.authors_service.authors.api.mapper.AuthorMapper;
+import com.editorial.authors.authors_service.authors.domain.model.Author;
+import com.editorial.authors.authors_service.authors.repository.AuthorRepository;
 
 @Service
 public class AuthorServiceImpl implements AuthorService {
@@ -39,8 +40,19 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public AuthorResponse getAuthorById(Long id) {
-        Author author = authorRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Author not found with id: " + id));
-        return AuthorMapper.toResponse(author);
+        return authorRepository.findById(id)
+                .map(author -> new AuthorResponse(
+                        author.getId(),
+                        author.getName(),
+                        author.getEmail(),
+                        author.getBiography(),
+                        author.getCreatedAt()
+                ))
+                .orElseThrow(() ->
+                        new ResponseStatusException(
+                                HttpStatus.NOT_FOUND,
+                                "Autor no encontrado con ID: " + id
+                        )
+                );
     }
 }

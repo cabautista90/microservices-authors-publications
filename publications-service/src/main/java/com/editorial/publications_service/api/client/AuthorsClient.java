@@ -20,7 +20,7 @@ public class AuthorsClient {
         try {
             AuthorResponse author = webClient
                     .get()
-                    .uri("http://localhost:8081/api/authors/{id}", authorId)
+                    .uri("http://localhost:8081/api/authors/{id}", authorId) // ✅ URL COMPLETA
                     .retrieve()
                     .bodyToMono(AuthorResponse.class)
                     .block();
