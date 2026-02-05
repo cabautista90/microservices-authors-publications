@@ -59,5 +59,7 @@ mvn spring-boot:run
 Frontend:
 
 npm install
+
 cd frontend
+
 npm run dev
