@@ -51,7 +51,9 @@ mvn spring-boot:run
 ##MICROSERVICIO PUBLICATIONS
 
 cd publications-service
+
 mvn clean
+
 mvn spring-boot:run
 
 Frontend:
