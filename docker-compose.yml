@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+
+  authors-service:
+    build: ./authors-service
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db-authors
+
+  publications-service:
+    build: ./publications-service
+    ports:
+      - "8082:8080"
+    depends_on:
+      - db-publications
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - authors-service
+      - publications-service
+
+  db-authors:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: authorsdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+
+  db-publications:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: publicationsdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5434:5432"

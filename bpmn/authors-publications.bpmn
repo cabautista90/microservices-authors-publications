@@ -1,0 +1,15 @@
+Modelo BPMN
+
+Start Event
+
+Task: Registrar Autor
+
+Task: Validar Datos del Autor
+
+Task: Guardar Autor (authors-service)
+
+Task: Registrar Publicación
+
+Task: Guardar Publicación (publications-service)
+
+End Event

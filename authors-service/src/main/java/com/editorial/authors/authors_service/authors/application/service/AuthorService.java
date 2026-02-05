@@ -1,9 +1,9 @@
-package com.editorial.authors.application.service;
-
-import com.editorial.authors.api.request.CreateAuthorRequest;
-import com.editorial.authors.api.response.AuthorResponse;
+package com.editorial.authors.authors_service.authors.application.service;
 
 import java.util.List;
+
+import com.editorial.authors.authors_service.authors.api.request.CreateAuthorRequest;
+import com.editorial.authors.authors_service.authors.api.response.AuthorResponse;
 
 public interface AuthorService {
 

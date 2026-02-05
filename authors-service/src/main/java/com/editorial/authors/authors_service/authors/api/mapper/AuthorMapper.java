@@ -1,18 +1,17 @@
 package com.editorial.authors.authors_service.authors.api.mapper;
 
-import com.editorial.authors.authors_service.authors.domain.model.Author;
-import com.editorial.authors.api.request.CreateAuthorRequest;
-import com.editorial.authors.api.response.AuthorResponse;
-
 import java.time.LocalDateTime;
 
+import org.springframework.stereotype.Component;
+
+import com.editorial.authors.authors_service.authors.api.request.CreateAuthorRequest;
+import com.editorial.authors.authors_service.authors.api.response.AuthorResponse;
+import com.editorial.authors.authors_service.authors.domain.model.Author;
+
+@Component
 public class AuthorMapper {
 
-    private AuthorMapper() {
-        // Utility class
-    }
-
-    public static Author toEntity(CreateAuthorRequest request) {
+    public Author toEntity(CreateAuthorRequest request) {
         return new Author(
                 request.name(),
                 request.email(),
@@ -21,7 +20,7 @@ public class AuthorMapper {
         );
     }
 
-    public static AuthorResponse toResponse(Author author) {
+    public AuthorResponse toResponse(Author author) {
         return new AuthorResponse(
                 author.getId(),
                 author.getName(),

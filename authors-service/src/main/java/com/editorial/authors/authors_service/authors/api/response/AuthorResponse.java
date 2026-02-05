@@ -1,4 +1,4 @@
-package com.editorial.authors.api.response;
+package com.editorial.authors.authors_service.authors.api.response;
 
 import java.time.LocalDateTime;
 

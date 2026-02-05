@@ -12,13 +12,15 @@ de autores y publicaciones en una editorial digital.
 - Frontend Web (React + Material UI)
 - Base de datos MySQL por microservicio
 - Comunicación REST síncrona
+- **BPMN**: Modelo de proceso de negocio (Camunda)
 
 ## Estructura del Proyecto
-/authors-service  
-/publications-service  
-/frontend  
-/bpmn  
-
+/authors-service
+/publications-service
+/frontend
+/bpmn
+docker-compose.yml
+README.md
 ## Tecnologías
 - Java + Spring Boot
 - MySQL
@@ -27,6 +29,26 @@ de autores y publicaciones en una editorial digital.
 - Docker (fase final)
 - Camunda Modeler (BPMN)
 
-## Estado del Proyecto
-Fase inicial: diseño arquitectónico y preparación del repositorio.
+## 🔄 BPMN
 
+El proceso BPMN modela:
+1. Registro de autor
+2. Validación
+3. Persistencia
+4. Registro de publicación
+5. Persistencia
+
+## ▶️ Ejecución
+##MICROSERVICIO AUTHORS
+cd authors-service
+mvn clean
+mvn spring-boot:run
+##MICROSERVICIO PUBLICATIONS
+cd publications-service
+mvn clean
+mvn spring-boot:run
+
+Frontend:
+```bash
+npm install
+npm run dev
