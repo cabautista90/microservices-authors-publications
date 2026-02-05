@@ -39,11 +39,17 @@ El proceso BPMN modela:
 5. Persistencia
 
 ## ▶️ Ejecución
+
 ##MICROSERVICIO AUTHORS
+
 cd authors-service
+
 mvn clean
+
 mvn spring-boot:run
+
 ##MICROSERVICIO PUBLICATIONS
+
 cd publications-service
 mvn clean
 mvn spring-boot:run
