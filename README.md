@@ -57,6 +57,7 @@ mvn clean
 mvn spring-boot:run
 
 Frontend:
-```bash
+
 npm install
+cd frontend
 npm run dev
